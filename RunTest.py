@@ -238,7 +238,7 @@ async def help(ctx):
 	h.add_field(name="🔑 ให้ PrivateKey", value="`&privatekey [@USER]`")
 	h.add_field(name="🔒 ยกเลิก PrivateKey", value="`&cancel_privatekey`")
 	h.add_field(name="🎟 เป็น Moderator", value="`&moderator`")
-	h.add_field(name="🧺 ยกเลิกสิทธิ Moderator", value="`&cancel_moderator`")
+	h.add_field(name="🧺 ยกเลิกสิทธิ Moderator", value="`&cancel_mod`")
 	h.add_field(name="🔺 สร้างพีระมิด [ERROR]", value="`&pyramid [จำนวนชั้น]`")
 	h.add_field(name="📐 สร้างสามเหลี่ยมมุมฉาก", value="`&right_triangle [จำนวนชั้น]`")
 	h.add_field(name="🔄 แปลงหน่วยอุณหภูมิ", value="`&help_temp`")
@@ -840,9 +840,14 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(person):
-	member_role_id = 851081137093738576
-	await person.add_roles(person.guild.get_role(member_role_id))
+	try: 
+		member_role_id = 727555789056639027
+		await person.add_roles(person.guild.get_role(member_role_id))
+	except:
+		member_role_id = 851081137093738576
+		await person.add_roles(person.guild.get_role(member_role_id))
 
+	
 
 # Listen
 async def on_command(ctx):
