@@ -839,9 +839,9 @@ async def on_ready():
 
 
 @bot.event
-async def on_member_join(message):
-	await message.channel.send(f'Welcome {member.name} to {guild.name}')
-	await bot.process_commands(message)
+async def on_member_join(person):
+	member_role_id = 851081137093738576
+	await person.add_roles(person.guild.get_role(member_role_id))
 
 
 # Listen
