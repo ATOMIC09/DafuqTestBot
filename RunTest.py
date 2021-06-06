@@ -73,8 +73,12 @@ async def devmode_on(ctx):
 	if bot.devmode == 0 and 269000561255383040 == ctx.message.author.id:
 		bot.devmode += 1
 		await ctx.send("**DevMode: ON ✅**")
-		await bot.change_presence(activity=discord.Game(name="Version: InDev 1.4.0"))
-	else:
+		await bot.change_presence(activity=discord.Game(name="Version: Dev 1.4.0"))
+		
+	elif 269000561255383040 != ctx.message.author.id:
+		await ctx.send("**You are not a developer**")
+
+	elif bot.devmode == 1:
 		await ctx.send("**Developer Mode is already ON**")
 
 @bot.command()
@@ -83,7 +87,11 @@ async def devmode_off(ctx):
 		bot.devmode -= 1
 		await ctx.send("**DevMode: OFF ❎**")
 		await bot.change_presence(activity=discord.Game(name="Version: 1.4.0"))
-	else:
+
+	elif 269000561255383040 != ctx.message.author.id:
+		await ctx.send("**You are not a developer**")
+
+	elif bot.devmode == 0:
 		await ctx.send("**Developer Mode is already OFF**")
 
 bot.whitelist_list = []
