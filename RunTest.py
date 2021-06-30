@@ -697,7 +697,29 @@ async def cancel_privatekey(ctx):
 	else:
 		await ctx.send(f"❎ **{author}** are not on the whitelist.")
 
+@bot.command()
+async def mute(ctx, user: discord.Member):
+	role = discord.utils.get(user.guild.roles, name="Muted")
+	role_admin = discord.utils.get(user.guild.roles, name="Admin")
+	role_administrator = discord.utils.get(user.guild.roles, name="Administrator")
 
+	try:
+		await user.add_roles(role)
+		await ctx.send(f"{user} has been muted ⛔")
+	except:
+		print("Cannot add role")
+
+	try:
+		await user.remove_roles(role_admin)
+	except:
+		print('Cannot remove "Admin" role')
+
+	try:
+		await user.remove_roles(role_administrator)
+	except:
+		print('Cannot remove "Administrator" role')
+	
+	
 
 # Events
 @bot.event
